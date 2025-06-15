@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and DeployAdd commentMore actions
 
 on:
   push:
@@ -34,26 +34,22 @@ jobs:
         name: build
         path: build/
         
-deploy2:
-  needs: build
-  if: github.ref == 'refs/heads/main'
-  runs-on: ubuntu-latest
-  
-  steps:
-  - uses: actions/checkout@v4 # Ensure the repository is checked out
-    with:
-      fetch-depth: 1 # Fetch only the latest commit to save time
-      
-  - name: Download build artifact
-    uses: actions/download-artifact@v4
-    with:
-      name: build
-      path: build
-      
-  - name: Deploy to GitHub Pages
-    uses: JamesIves/github-pages-deploy-action@v4
-    with:
-      folder: build
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download build artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: build
+        path: build
+        
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: build
         
     # Uncomment and configure to deploy to Netlify
     # - name: Deploy to Netlify
