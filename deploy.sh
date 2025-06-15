@@ -5,34 +5,17 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${YELLOW}Building portfolio website...${NC}"
-npm run build
+echo -e "${YELLOW}Deploying portfolio website to GitHub Pages...${NC}"
+
+# Run the predeploy and deploy scripts defined in package.json
+npm run deploy
 
 if [ $? -ne 0 ]; then
-    echo -e "\n${YELLOW}Build failed. Check the errors above.${NC}"
+    echo -e "\n${YELLOW}Deployment failed. Check the errors above.${NC}"
     exit 1
 fi
 
-echo -e "${GREEN}Build successful!${NC}"
-
-# Check if Netlify CLI is installed
-if ! command -v netlify &> /dev/null; then
-    echo -e "\n${YELLOW}Netlify CLI not found. Installing...${NC}"
-    npm install -g netlify-cli
-fi
-
-echo -e "\n${YELLOW}Deploying to Netlify...${NC}"
-netlify deploy --dir=build
-
-echo -e "\n${YELLOW}Want to deploy to production?${NC}"
-read -p "Deploy to production? (y/n) " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    netlify deploy --dir=build --prod
-    echo -e "\n${GREEN}Your portfolio has been deployed to production!${NC}"
-else
-    echo -e "\n${YELLOW}To deploy to production later, run:${NC}"
-    echo "netlify deploy --dir=build --prod"
-fi
-
+echo -e "${GREEN}Deployment successful!${NC}"
+echo -e "\n${YELLOW}Your website should now be available at: https://filipthedev.github.io${NC}"
+echo -e "\n${YELLOW}Note: It might take a few minutes for the changes to be visible.${NC}"
 echo -e "\n${GREEN}Done!${NC}"
