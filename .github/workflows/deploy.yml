@@ -53,7 +53,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: build
-        token: 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
+        token: "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"
         
     # Uncomment and configure to deploy to Netlify
     # - name: Deploy to Netlify
