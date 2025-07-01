@@ -2,7 +2,7 @@
 /* Personal info */
 export const userInfo = {
   name: "Filip Tomevski",
-  title: "Front-End Developer with Full-Stack Experience",
+  title: "Full-Stack Web/Mobile Developer",
   description: "I craft responsive and user-friendly web and mobile applications with a focus on seamless front-end experiences and efficient integrations",
   email: "tomevskif@gmail.com",
   // phone: "+1 123 456 7890",
